@@ -1,0 +1,139 @@
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.home-header {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  padding: 60px 20px 40px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.header-top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.home-title {
+  font-size: 56px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--accent) 0%, #ff8a9b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+  letter-spacing: 4px;
+}
+
+.home-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.home-content {
+  flex: 1;
+  padding: 30px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.rules-card {
+  margin-bottom: 20px;
+}
+
+.rules-card h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+
+.rules-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rules-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.rule-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.victory-card {
+  margin-bottom: 30px;
+}
+
+.victory-card h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--success);
+}
+
+.victory-conditions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.victory-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.victory-emoji {
+  font-size: 28px;
+}
+
+.victory-item p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.btn-large {
+  width: 100%;
+  padding: 18px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.home-footer {
+  text-align: center;
+}
+
+.tip {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .home-title {
+    font-size: 42px;
+  }
+  
+  .home-subtitle {
+    font-size: 16px;
+  }
+  
+  .rules-list li {
+    font-size: 14px;
+  }
+}

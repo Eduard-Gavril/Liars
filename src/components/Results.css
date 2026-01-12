@@ -1,0 +1,276 @@
+.results {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.results-header {
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.results-header.civil-win {
+  background: linear-gradient(135deg, var(--success) 0%, #3eb489 100%);
+}
+
+.results-header.impostor-win {
+  background: linear-gradient(135deg, var(--danger) 0%, #e05555 100%);
+}
+
+.winner-announcement {
+  animation: scaleIn 0.6s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.winner-emoji {
+  font-size: 80px;
+  margin-bottom: 16px;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.winner-text {
+  font-size: 32px;
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.results-content {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.impostor-reveal {
+  text-align: center;
+}
+
+.impostor-reveal h3 {
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.impostor-name {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--danger);
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 2px solid var(--danger);
+}
+
+.words-reveal {
+  display: flex;
+  gap: 12px;
+}
+
+.word-box {
+  flex: 1;
+  padding: 16px;
+  border-radius: 10px;
+  border: 2px solid;
+}
+
+.word-box.civil {
+  background: rgba(78, 204, 163, 0.1);
+  border-color: var(--success);
+}
+
+.word-box.impostor {
+  background: rgba(255, 107, 107, 0.1);
+  border-color: var(--danger);
+}
+
+.word-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.word-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.vote-results h3 {
+  font-size: 18px;
+  color: var(--warning);
+  margin-bottom: 20px;
+}
+
+.vote-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vote-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vote-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.player-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.player-name.impostor-marker {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.vote-count {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.vote-bar-track {
+  height: 24px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.vote-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.8s ease;
+}
+
+.vote-bar-fill.impostor {
+  background: var(--danger);
+}
+
+.clues-history h3 {
+  font-size: 18px;
+  color: var(--success);
+  margin-bottom: 16px;
+}
+
+.all-player-clues {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.player-section {
+  background: var(--bg-secondary);
+  padding: 14px;
+  border-radius: 10px;
+  border-left: 4px solid var(--success);
+}
+
+.player-section.impostor-section {
+  border-left-color: var(--danger);
+  background: rgba(255, 107, 107, 0.05);
+}
+
+.player-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--bg-primary);
+}
+
+.player-section-header strong {
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.impostor-badge {
+  background: var(--danger);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.player-section-clues {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.clue-bubble {
+  background: var(--bg-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.clue-round {
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.results-actions {
+  margin-top: 10px;
+}
+
+.results-actions .btn {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .winner-emoji {
+    font-size: 60px;
+  }
+  
+  .winner-text {
+    font-size: 26px;
+  }
+  
+  .impostor-name {
+    font-size: 26px;
+  }
+  
+  .words-reveal {
+    flex-direction: column;
+  }
+}
