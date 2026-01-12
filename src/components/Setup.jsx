@@ -9,7 +9,7 @@ function Setup({ onBack, onStart }) {
   const t = (key, replacements) => getTranslation(language, key, replacements);
   
   const [players, setPlayers] = useState(['', '', '']);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const addPlayer = () => {
     if (players.length < 12) {
@@ -30,6 +30,14 @@ function Setup({ onBack, onStart }) {
     setPlayers(newPlayers);
   };
 
+  const toggleCategory = (categoryKey) => {
+    if (selectedCategories.includes(categoryKey)) {
+      setSelectedCategories(selectedCategories.filter(key => key !== categoryKey));
+    } else {
+      setSelectedCategories([...selectedCategories, categoryKey]);
+    }
+  };
+
   const handleStart = () => {
     const filledPlayers = players.filter(p => p.trim() !== '');
     
@@ -38,13 +46,13 @@ function Setup({ onBack, onStart }) {
       return;
     }
     
-    if (!selectedCategory) {
+    if (selectedCategories.length === 0) {
       alert(t('selectCategory'));
       return;
     }
     
-    const wordPair = getRandomWord(selectedCategory);
-    onStart(filledPlayers, selectedCategory, wordPair);
+    const wordPair = getRandomWord(selectedCategories);
+    onStart(filledPlayers, selectedCategories, wordPair);
   };
 
   return (
@@ -88,23 +96,30 @@ function Setup({ onBack, onStart }) {
 
         <div className="card">
           <h3>🎯 {t('category')}</h3>
+          <p className="category-hint">✨ {t('categoryHint')}</p>
           <div className="categories-grid">
             {Object.keys(WORD_CATEGORIES).map((key) => (
               <button
                 key={key}
-                className={`category-btn ${selectedCategory === key ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(key)}
+                className={`category-btn ${selectedCategories.includes(key) ? 'active' : ''}`}
+                onClick={() => toggleCategory(key)}
               >
-                {getCategoryName(key, language)}
+                <span className="category-name">{getCategoryName(key, language)}</span>
+                {selectedCategories.includes(key) && <span className="checkmark">✓</span>}
               </button>
             ))}
           </div>
+          {selectedCategories.length > 0 && (
+            <div className="selected-count">
+              {selectedCategories.length} {selectedCategories.length === 1 ? t('categorySelected') : t('categoriesSelected')}
+            </div>
+          )}
         </div>
 
         <button
           className="btn btn-primary btn-large"
           onClick={handleStart}
-          disabled={players.filter(p => p.trim()).length < 3 || !selectedCategory}
+          disabled={players.filter(p => p.trim()).length < 3 || selectedCategories.length === 0}
         >
           {t('distributeWords')}
         </button>
