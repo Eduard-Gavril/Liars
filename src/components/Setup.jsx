@@ -51,7 +51,7 @@ function Setup({ onBack, onStart }) {
       return;
     }
     
-    const wordPair = getRandomWord(selectedCategories);
+    const wordPair = getRandomWord(selectedCategories, language);
     onStart(filledPlayers, selectedCategories, wordPair);
   };
 
