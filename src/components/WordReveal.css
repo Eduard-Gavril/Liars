@@ -140,6 +140,17 @@
   background-clip: text;
 }
 
+.countdown-timer {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 16px;
+  background: var(--bg-primary);
+  color: var(--accent);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .impostor-hint,
 .civil-hint {
   padding: 20px;

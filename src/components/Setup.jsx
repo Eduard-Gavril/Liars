@@ -8,7 +8,16 @@ function Setup({ onBack, onStart }) {
   const { language } = useLanguage();
   const t = (key, replacements) => getTranslation(language, key, replacements);
   
-  const [players, setPlayers] = useState(['', '', '']);
+  // Preimposto giocatori di default con nomi localizzati
+  const getDefaultPlayerName = (index) => {
+    return t('player') + ' ' + (index + 1);
+  };
+  
+  const [players, setPlayers] = useState([
+    getDefaultPlayerName(0),
+    getDefaultPlayerName(1),
+    getDefaultPlayerName(2)
+  ]);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   const addPlayer = () => {

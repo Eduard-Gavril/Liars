@@ -5,6 +5,7 @@ import WordReveal from './components/WordReveal';
 import GamePlay from './components/GamePlay';
 import Voting from './components/Voting';
 import Results from './components/Results';
+import RemakeButton from './components/RemakeButton';
 import './App.css';
 
 function App() {
@@ -49,6 +50,11 @@ function App() {
 
   return (
     <div className="app">
+      {/* Mostra il pulsante remake in tutte le schermate tranne home e setup */}
+      {gameState !== 'home' && gameState !== 'setup' && (
+        <RemakeButton onRestart={resetGame} />
+      )}
+      
       {gameState === 'home' && (
         <Home onStart={() => setGameState('setup')} />
       )}

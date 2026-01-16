@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { getTranslation } from '../i18n/translations';
 import LanguageSelector from './LanguageSelector';
@@ -6,6 +7,7 @@ import './Home.css';
 function Home({ onStart }) {
   const { language } = useLanguage();
   const t = (key, replacements) => getTranslation(language, key, replacements);
+  const [showRules, setShowRules] = useState(false);
   
   return (
     <div className="home fade-in">
@@ -18,55 +20,63 @@ function Home({ onStart }) {
       </div>
       
       <div className="home-content">
-        <div className="card rules-card">
-          <h2>📖 {t('howToPlay')}</h2>
-          <ul className="rules-list">
-            <li>
-              <span className="rule-icon">👥</span>
-              <div>
-                <strong>{t('civilians')}</strong> {t('civiliansDesc')}
-              </div>
-            </li>
-            <li>
-              <span className="rule-icon">🎭</span>
-              <div>
-                <strong>{t('impostor')}</strong> {t('impostorDesc')}
-              </div>
-            </li>
-            <li>
-              <span className="rule-icon">💬</span>
-              <div>
-                {t('giveClues')} <strong>{t('clues')}</strong> {t('cluesDesc')}
-              </div>
-            </li>
-            <li>
-              <span className="rule-icon">🔍</span>
-              <div>
-                {t('analyzeClues')} <strong>{t('findImpostor')}</strong>
-              </div>
-            </li>
-            <li>
-              <span className="rule-icon">🗳️</span>
-              <div>
-                {t('vote')}
-              </div>
-            </li>
-          </ul>
-        </div>
+        <button 
+          className="btn btn-secondary btn-large" 
+          onClick={() => setShowRules(!showRules)}
+        >
+          📖 {t('howToPlay')}
+        </button>
 
-        <div className="card victory-card">
-          <h3>🏆 {t('victoryConditions')}</h3>
-          <div className="victory-conditions">
-            <div className="victory-item">
-              <span className="victory-emoji">✅</span>
-              <p><strong>{t('civiliansWin')}</strong> {t('civiliansWinDesc')}</p>
-            </div>
-            <div className="victory-item">
-              <span className="victory-emoji">🎯</span>
-              <p><strong>{t('impostorWins')}</strong> {t('impostorWinsDesc')}</p>
+        {showRules && (
+          <div className="card rules-card fade-in">
+            <ul className="rules-list">
+              <li>
+                <span className="rule-icon">👥</span>
+                <div>
+                  <strong>{t('civilians')}</strong> {t('civiliansDesc')}
+                </div>
+              </li>
+              <li>
+                <span className="rule-icon">🎭</span>
+                <div>
+                  <strong>{t('impostor')}</strong> {t('impostorDesc')}
+                </div>
+              </li>
+              <li>
+                <span className="rule-icon">💬</span>
+                <div>
+                  {t('giveClues')} <strong>{t('clues')}</strong> {t('cluesDesc')}
+                </div>
+              </li>
+              <li>
+                <span className="rule-icon">🔍</span>
+                <div>
+                  {t('analyzeClues')} <strong>{t('findImpostor')}</strong>
+                </div>
+              </li>
+              <li>
+                <span className="rule-icon">🗳️</span>
+                <div>
+                  {t('vote')}
+                </div>
+              </li>
+            </ul>
+
+            <div className="victory-section">
+              <h3>🏆 {t('victoryConditions')}</h3>
+              <div className="victory-conditions">
+                <div className="victory-item">
+                  <span className="victory-emoji">✅</span>
+                  <p><strong>{t('civiliansWin')}</strong> {t('civiliansWinDesc')}</p>
+                </div>
+                <div className="victory-item">
+                  <span className="victory-emoji">🎯</span>
+                  <p><strong>{t('impostorWins')}</strong> {t('impostorWinsDesc')}</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <button className="btn btn-primary btn-large" onClick={onStart}>
           {t('startGame')}

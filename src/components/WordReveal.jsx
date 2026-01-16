@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { getTranslation } from '../i18n/translations';
 import './WordReveal.css';
@@ -9,6 +9,27 @@ function WordReveal({ players, impostorIndex, secretWord, impostorWord, onComple
   
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
+  const [countdown, setCountdown] = useState(5);
+
+  // Timer automatico di 5 secondi quando la carta è rivelata
+  useEffect(() => {
+    if (!isRevealed) return;
+    
+    setCountdown(5); // Reset countdown ogni volta che si rivela una carta
+    
+    const timer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          handleNext();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isRevealed, currentPlayer]);
 
   const handleReveal = () => {
     setIsRevealed(true);
@@ -65,6 +86,11 @@ function WordReveal({ players, impostorIndex, secretWord, impostorWord, onComple
                 <p className="word-label">{t('yourWord')}</p>
                 <h1 className="word">{word}</h1>
               </div>
+              
+              <div className="countdown-timer">
+                ⏱️ {countdown}s
+              </div>
+              
               {isImpostor && (
                 <div className="impostor-hint">
                   <p>🤫 {t('impostorWarning')}</p>
