@@ -61,6 +61,12 @@ function Setup({ onBack, onStart }) {
     }
     
     const wordPair = getRandomWord(selectedCategories, language);
+    
+    // 50% di probabilità che l'impostore riceva solo la categoria invece dell'indizio
+    if (Math.random() < 0.5) {
+      wordPair.impostor = wordPair.categoryName[language];
+    }
+    
     onStart(filledPlayers, selectedCategories, wordPair);
   };
 

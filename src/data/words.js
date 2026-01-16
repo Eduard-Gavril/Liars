@@ -246,7 +246,13 @@ export function getRandomWord(categoryKeys, language = 'it') {
   
   categories.forEach(key => {
     if (WORD_CATEGORIES[key]) {
-      allWords.push(...WORD_CATEGORIES[key].words);
+      WORD_CATEGORIES[key].words.forEach(wordPair => {
+        allWords.push({
+          ...wordPair,
+          categoryKey: key,
+          categoryName: WORD_CATEGORIES[key].name
+        });
+      });
     }
   });
   
@@ -255,10 +261,11 @@ export function getRandomWord(categoryKeys, language = 'it') {
   const randomIndex = Math.floor(Math.random() * allWords.length);
   const wordPair = allWords[randomIndex];
   
-  // Restituisci le parole nella lingua specificata
+  // Restituisci le parole nella lingua specificata insieme al nome della categoria
   return {
     secret: wordPair.secret[language] || wordPair.secret.it,
-    impostor: wordPair.impostor[language] || wordPair.impostor.it
+    impostor: wordPair.impostor[language] || wordPair.impostor.it,
+    categoryName: wordPair.categoryName
   };
 }
 
